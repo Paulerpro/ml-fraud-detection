@@ -1,5 +1,5 @@
 import streamlit as st
-from src.inference.predict import predict_single
+from ml_fraud_detection.inference.predict import predict_single
 
 st.title("Credit Card Fraud Detector")
 

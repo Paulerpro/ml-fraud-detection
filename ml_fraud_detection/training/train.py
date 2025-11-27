@@ -10,9 +10,9 @@ from torch.utils.data import DataLoader
 from torch.optim import Adam
 import torch.nn as nn
 
-from src.training.model import MLP
-from src.training.dataset import CreditCardDataset
-from src.training.utils import train_epoch, evaluate
+from ml_fraud_detection.training.model import MLP
+from ml_fraud_detection.training.dataset import CreditCardDataset
+from ml_fraud_detection.training.utils import train_epoch, evaluate
 
 
 def main():

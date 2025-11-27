@@ -1,2 +1,3 @@
 .venv
 notebooks/training_notebook.ipynb
+ml_fraud_detection.egg-info/
