@@ -1,7 +1,10 @@
 import streamlit as st
-from ml_fraud_detection.inference.predict import predict_single
+import requests
 
-st.title("Credit Card Fraud Detector")
+API_URL = "http://localhost:8000/predict"
+
+st.title("Fraud Detection System")
+st.write("Enter the 30 features used for prediction")
 
 time = st.number_input("Time")
 amount = st.number_input("Amount")
@@ -10,8 +13,16 @@ features = {}
 for i in range(1, 29):
     features[f"V{i}"] = st.number_input(f"V{i}")
 
-if st.button("Predict"):
+if st.button("Predict Fraud"):
     features["Time"] = time
     features["Amount"] = amount
-    prob = predict_single(features)
-    st.success(f"Fraud probability: {prob:.4f}")
+    payload = {"features": features}
+
+    response = requests.post(API_URL, json=payload)
+
+    if response.status_code == 200:
+        result = response.json()
+        st.write("### Fraud Probability:", result["fraud_probability"])
+        st.write("### Fraud:", result["is_fraud"])
+    else:
+        st.error("API Error: Could not get prediction")
