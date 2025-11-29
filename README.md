@@ -7,7 +7,7 @@ This project is an **End-to-End Credit Card Fraud Detection System** built using
 * **PyTorch** — for model training
 * **Scikit-Learn** — for preprocessing & evaluation
 * **Streamlit** — for the interactive UI
-* **FastAPI (upcoming)** — for production-grade API deployment
+* **FastAPI** — for production-grade API deployment
 * **MLflow (planned)** — for experiment tracking
 * **Google Colab** — for GPU-accelerated training
 
@@ -20,7 +20,7 @@ This repository contains a clean, modular, production-ready Python project struc
 ✔ API layer
 ✔ UI layer
 ✔ Notebooks
-✔ Model artifacts (`model.pt`, `scaler.pkl`)
+✔ Model artifacts (`best_model.pt`, `scaler.pkl`)
 
 ---
 
@@ -28,6 +28,14 @@ This repository contains a clean, modular, production-ready Python project struc
 
 ```
 ml-fraud-detection/
+│
+│
+├── api/
+│   ├── main.py          # FastAPI entry file
+│   ├── schemas.py       # Data schema
+│   ├── service.py       # FastAPI business logic
+│   └── __init__.py 
+│
 │
 ├── ml_fraud_detection/
 │   ├── training/
@@ -42,7 +50,7 @@ ml-fraud-detection/
 │   └── __init__.py
 │
 ├── models/
-│   ├── model.pt              # Exported PyTorch model weights
+│   ├── best_model.pt              # Exported PyTorch model weights
 │   ├── scaler.pkl            # StandardScaler used during preprocessing
 │
 ├── app/
@@ -110,7 +118,7 @@ To counter the massive class imbalance.
 
 ```
 models/
-│── model.pt
+│── best_model.pt
 │── scaler.pkl
 ```
 
@@ -137,13 +145,13 @@ python ml_fraud_detection/training/train.py
 
 `predict.py` loads:
 
-* `model.pt`
+* `best_model.pt`
 * `scaler.pkl`
 
 And exposes a function:
 
 ```python
-predict_single(transaction_dict)
+predict_fraud(transaction_dict)
 ```
 
 Returns:
@@ -177,9 +185,9 @@ The UI allows users to:
 
 ---
 
-# ⚡ **FastAPI Integration (Next Step)**
+# ⚡ **FastAPI Integration**
 
-The backend API (`app/fastapi_app.py`) will expose:
+The backend API (`api/main.py`) will expose:
 
 ### **POST /predict**
 
@@ -208,7 +216,7 @@ Response:
 ### **Run FastAPI**
 
 ```bash
-uvicorn app.fastapi_app:app --reload
+uvicorn api.main:app --reload
 ```
 
 This allows:
@@ -282,7 +290,7 @@ uv sync
 
 **Paulerpro**
 
-* Data Scientist / ML Engineer
+* AI / ML Engineer
 * Focused on practical end-to-end AI systems
 * Passion for med-tech, ML engineering, and automation
 
