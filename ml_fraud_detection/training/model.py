@@ -18,4 +18,4 @@ class MLP(nn.Module):
       )
 
     def forward(self, x):
-        return self.net(x).squeeze(1)  # logits
+        return self.net(x).squeeze(1) 
