@@ -3,10 +3,15 @@ import joblib
 import pandas as pd
 from ml_fraud_detection.training.model import MLP
 from typing import Dict
+import mlflow
 
 scaler = joblib.load("models/scaler.pkl")
 
 model = MLP(input_dim=30) 
+
+# model_name = "FraudDetectionModel"
+# model_uri = f"models:/{model_name}/latest"
+# model = mlflow.pytorch.load_model(model_uri)
 
 model.load_state_dict(torch.load("models/best_model.pt", map_location=torch.device("cpu")))
 model.eval()
