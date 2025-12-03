@@ -35,6 +35,7 @@ notebooks/
 
 data/
 datasets/
+TODO.txt
 
 !models/
 !models/*.pkl
