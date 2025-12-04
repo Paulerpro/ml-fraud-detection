@@ -1,7 +1,8 @@
 import streamlit as st
 import requests
 
-API_URL = "http://localhost:8000/predict"
+API_URL = "https://ml-fraud-detection-backend.onrender.com/predict"
+
 
 st.title("Fraud Detection System")
 st.write("Enter the 30 features used for prediction")
